@@ -6,8 +6,18 @@ class ProductsController < ApplicationController
     def create
         #render plain: params[:product].inspect
         @product = Product.new( product_params )
-        @product.save
-        redirect_to products_show(@product)
+        if @product.save
+            # validation failed
+            flash[:notice] = "Product was successfully created"
+            redirect_to product_path(@product)
+        else
+            # show the new product created
+            render 'new'
+        end
+    end
+    
+    def show
+        @product = Product.find(params[:id])
     end
     
     private

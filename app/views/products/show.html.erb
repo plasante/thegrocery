@@ -7,3 +7,6 @@
 <p>
     Description: <%= @product.description %>
 </p>
+
+<%= link_to "Edit this product", edit_product_path(@product) %> |
+<%= link_to "Back to products listing", products_path %>

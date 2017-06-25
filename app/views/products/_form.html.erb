@@ -1,11 +1,4 @@
-<% if @product.errors.any? %>
-<h2>The following errors prevented the product from getting edited </h2>
-<ul>
-    <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-    <% end %>
-</ul>
-<% end %>
+<%= render 'shared/errors', obj: @product %>
 
 <div class="row">
     <div class="col-xs-12">

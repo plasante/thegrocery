@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
         end
         
         def require_same_user
-            if current_user != @product.user
+            if current_user != @product.user and !current_user.admin?
                flash[:danger] = "You can only edit or delete your own product"
                redirect_to root_path
             end

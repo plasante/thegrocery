@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
     before_action :set_product, only: [:edit, :update, :show, :destroy]
+    before_action :require_user, except: [:index, :show]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
         @products = Product.paginate(page: params[:page], :per_page => 5)
@@ -52,5 +54,12 @@ class ProductsController < ApplicationController
         
         def product_params
             params.require(:product).permit(:name, :description)
+        end
+        
+        def require_same_user
+            if current_user != @product.user
+               flash[:danger] = "You can only edit or delete your own product"
+               redirect_to root_path
+            end
         end
 end

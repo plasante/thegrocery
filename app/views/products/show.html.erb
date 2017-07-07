@@ -20,6 +20,9 @@
     <h4 class="center description"><strong>Description:</strong></h4>
     <hr>
     <%= simple_format(@product.description) %>
+    <% if @product.categories.any? %>
+        <p>Categories: <%= render @product.categories %></p>
+    <% end %>
     <div class="product-actions">
         <% if logged_in? && (current_user == @product.user || current_user.admin?) %>
             <%= link_to "Edit this product", edit_product_path(@product), class: "btn btn-xs btn-primary" %>

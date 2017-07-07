@@ -8,6 +8,7 @@
                     <li class="product-title">
                         <%= link_to "#{category.name}", category_path(category) %>
                     </li>
+                    <li><small><%= pluralize(category.products.count, "product") %></small></li>
                 </div>
             </div>
         </ul>
